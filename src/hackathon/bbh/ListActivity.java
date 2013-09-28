@@ -43,7 +43,7 @@ public class ListActivity extends Activity {
 		HttpConnectionParams.setSoTimeout(httpParameters, 15000);			
 
 		HttpClient httpclient = new DefaultHttpClient(httpParameters);
-		HttpPost httppost = new HttpPost("urlDoServidor");
+		HttpPost httppost = new HttpPost("138.51.209.221");
 		httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 		HttpResponse response = httpclient.execute(httppost);
 		HttpEntity entity = response.getEntity();
