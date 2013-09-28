@@ -3,12 +3,12 @@ package hackathon.bbh;
 public class Person {
 	
 	private String name, surName;
-	private String AssingnedTask;
-	private int numTasks;
+	private int uID;
 	
-	public Person(String name, String surName){
+	public Person(String name, String surName, int uID){
 		this.name = name;
 		this.surName = surName;
+		this.uID = uID;
 	}
 
 	public String getName() {
@@ -26,24 +26,13 @@ public class Person {
 	public void setSurName(String surName) {
 		this.surName = surName;
 	}
-
-	public String getAssingnedTask() {
-		return AssingnedTask;
-	}
-
-	public void setAssingnedTask(String assingnedTask) {
-		AssingnedTask = assingnedTask;
-	}
-
-	public int getNumTasks() {
-		return numTasks;
-	}
-
-	public void setNumTasks(int numTasks) {
-		this.numTasks = numTasks;
-	}
 	
-	
-	
+	public int getUID() {
+		return uID;
+	}
+
+	public void setUID(int uID) {
+		this.uID = uID;
+	}
 	
 }

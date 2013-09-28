@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
+         <activity
             android:name="hackathon.bbh.LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
