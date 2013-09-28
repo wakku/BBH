@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-// Italo viado
 
 public class ChoresActivity extends Activity {
 
