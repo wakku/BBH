@@ -12,4 +12,20 @@ public class Reviews {
 		this.userID = userID;
 	}
 
+	public String getOutcome() {
+		return outcome;
+	}
+
+	public void setOutcome(String outcome) {
+		this.outcome = outcome;
+	}
+
+	public int getTaskID() {
+		return taskID;
+	}
+
+	public int getUserID() {
+		return userID;
+	}
+
 }
