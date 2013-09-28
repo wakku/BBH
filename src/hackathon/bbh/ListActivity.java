@@ -1,15 +1,6 @@
 package hackathon.bbh;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +15,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 
 public class ListActivity extends Activity {
 	
@@ -41,26 +33,29 @@ public class ListActivity extends Activity {
 	}
 	
 	public void httpPost() throws Exception {
-		HttpClient httpclient = new DefaultHttpClient();
-		HttpPost httppost = new HttpPost("http://138.51.209.221:3000/");
-
-		// Request parameters and other properties.
-		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
-		params.add(new BasicNameValuePair("param-1", "12345"));
-		params.add(new BasicNameValuePair("param-2", "Hello!"));
-		httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
-
-		//Execute and get the response.
-		HttpResponse response = httpclient.execute(httppost);
-		HttpEntity entity = response.getEntity();
-
-		if (entity != null) {
-			InputStream instream = entity.getContent();
-			try {
-				// do something useful
-			} finally {
-				instream.close();
-			}
-		}
+		
+		
+		
+//		HttpClient httpclient = new DefaultHttpClient();
+//		HttpPost httppost = new HttpPost("http://ec2-23-22-78-145.compute-1.amazonaws.com/users");
+//		// Request parameters and other properties.
+//		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
+//		params.add(new BasicNameValuePair("user[name]", "name"));
+//		params.add(new BasicNameValuePair("user[surname]", "Hello!"));
+//		httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+//		
+//		//Execute and get the response.
+//		HttpResponse response = httpclient.execute(httppost);
+//		Log.i("BBH", "lol2");
+//		HttpEntity entity = response.getEntity();
+//
+//		if (entity != null) {
+//			InputStream instream = entity.getContent();
+//			try {
+//				// do something useful
+//			} finally {
+//				instream.close();
+//			}
+//		}
 	}
 }
