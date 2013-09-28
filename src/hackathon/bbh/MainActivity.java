@@ -1,29 +1,15 @@
 package hackathon.bbh;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 
-public class MainActivity extends FragmentActivity {
-	
-	private MainLoginFragment mainLoginFragment;
+public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if (savedInstanceState == null) {
-	        // Add the fragment on initial activity setup
-	        mainLoginFragment = new MainLoginFragment();
-	        getSupportFragmentManager()
-	        .beginTransaction()
-	        .add(android.R.id.content, mainLoginFragment)
-	        .commit();
-	    } else {
-	        // Or set the fragment from restored state info
-	        mainLoginFragment = (MainLoginFragment) getSupportFragmentManager()
-	        .findFragmentById(android.R.id.content);
-	    }
-		//setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_main);
 	}
 
 	@Override
