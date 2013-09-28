@@ -26,6 +26,14 @@
             android:name="hackathon.bbh.LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
+        <activity
+            android:name="hackathon.bbh.ListActivity"
+            android:label="@string/title_activity_list" >
+        </activity>
+        <activity
+            android:name="hackathon.bbh.ChoresActivity"
+            android:label="@string/title_activity_chores" >
+        </activity>
     </application>
 
 </manifest>
