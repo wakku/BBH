@@ -28,7 +28,8 @@
         android:layout_marginLeft="46dp"
         android:drawableTop="@drawable/ic_launcher"
         android:text="@string/hello_world"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:onClick="newButton"  />
 
     <Button
         android:id="@+id/button1"

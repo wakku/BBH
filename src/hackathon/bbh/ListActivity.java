@@ -1,82 +1,66 @@
 package hackathon.bbh;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-import org.apache.http.util.EntityUtils;
 
-import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
-import android.view.Menu;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+import android.os.Bundle;
 
 public class ListActivity extends Activity {
 	
 	
-	private String post() throws ClientProtocolException, IOException{
-		
-		ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("parametro", "parametro"));
-		
-		//Create the HTTP request
-		HttpParams httpParameters = new BasicHttpParams();
-
-		//Setup timeouts
-		HttpConnectionParams.setConnectionTimeout(httpParameters, 15000);
-		HttpConnectionParams.setSoTimeout(httpParameters, 15000);			
-
-		HttpClient httpclient = new DefaultHttpClient(httpParameters);
-		HttpPost httppost = new HttpPost("urlDoServidor");
-		httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-		HttpResponse response = httpclient.execute(httppost);
-		HttpEntity entity = response.getEntity();
-		String result = EntityUtils.toString(entity);
-		return result;
-		
-	}
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		try {
+			httpPost();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		super.onCreate(savedInstanceState);
-        ArrayList<Items> list = getListData();
-        final ListView lv1 = (ListView) findViewById(R.id.items_list);
-        lv1.setAdapter(new CustomListAdapter(this, list));
-    	lv1.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-				Object o = lv1.getItemAtPosition(position);
-				
-			}
-
-		});
 		
 	}
 	
-    private ArrayList<Items> getListData() {
-    	
-        ArrayList<Items> results = new ArrayList<Items>();
-        Items n = new Items(0, "Leite", "Produto Mortal", 0, "0");
-        results.add(n);
-        
-        return results;
-        
-    }
+	public void httpPost() throws Exception {
+		HttpClient httpclient = new DefaultHttpClient();
+		HttpPost httppost = new HttpPost("http://138.51.209.221:3000/");
+
+		// Request parameters and other properties.
+		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
+		params.add(new BasicNameValuePair("param-1", "12345"));
+		params.add(new BasicNameValuePair("param-2", "Hello!"));
+		httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+
+		//Execute and get the response.
+		HttpResponse response = httpclient.execute(httppost);
+		HttpEntity entity = response.getEntity();
+
+		if (entity != null) {
+			InputStream instream = entity.getContent();
+			try {
+				// do something useful
+			} finally {
+				instream.close();
+			}
+		}
+	}
 }
