@@ -32,36 +32,6 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-	    StrictMode.setThreadPolicy(policy);
-		
-		HttpClient client = new DefaultHttpClient();
-		HttpPost post = new HttpPost("http://138.51.209.221:3000/users");
-		
-		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
-		pairs.add(new BasicNameValuePair("user[name]", "value1"));
-		pairs.add(new BasicNameValuePair("user[surname]", "value2"));
-		try {
-			post.setEntity(new UrlEncodedFormEntity(pairs));
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		HttpResponse response;
-		try {
-			response = client.execute(post);
-			Log.i("BBH", response.getEntity().getContent().toString());
-		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
 	}
 
 	@Override

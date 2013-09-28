@@ -1,22 +1,29 @@
 package hackathon.bbh;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 
+@TargetApi(Build.VERSION_CODES.GINGERBREAD)
+@SuppressLint("NewApi")
 public class ListActivity extends Activity {
 	
 	
@@ -32,30 +39,36 @@ public class ListActivity extends Activity {
 		
 	}
 	
+	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
+	@SuppressLint("NewApi")
 	public void httpPost() throws Exception {
 		
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+	    StrictMode.setThreadPolicy(policy);
 		
+		HttpClient client = new DefaultHttpClient();
+		HttpPost post = new HttpPost("http://138.51.209.221:3000/users");
 		
-//		HttpClient httpclient = new DefaultHttpClient();
-//		HttpPost httppost = new HttpPost("http://ec2-23-22-78-145.compute-1.amazonaws.com/users");
-//		// Request parameters and other properties.
-//		List<NameValuePair> params = new ArrayList<NameValuePair>(2);
-//		params.add(new BasicNameValuePair("user[name]", "name"));
-//		params.add(new BasicNameValuePair("user[surname]", "Hello!"));
-//		httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
-//		
-//		//Execute and get the response.
-//		HttpResponse response = httpclient.execute(httppost);
-//		Log.i("BBH", "lol2");
-//		HttpEntity entity = response.getEntity();
-//
-//		if (entity != null) {
-//			InputStream instream = entity.getContent();
-//			try {
-//				// do something useful
-//			} finally {
-//				instream.close();
-//			}
-//		}
+		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+		pairs.add(new BasicNameValuePair("user[name]", "value1"));
+		pairs.add(new BasicNameValuePair("user[surname]", "value2"));
+		try {
+			post.setEntity(new UrlEncodedFormEntity(pairs));
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		HttpResponse response;
+		try {
+			response = client.execute(post);
+			Log.i("BBH", response.getEntity().getContent().toString());
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
