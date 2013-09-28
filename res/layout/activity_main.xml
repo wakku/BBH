@@ -1,42 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_gravity="center"
+    android:background="@drawable/img3"
     android:orientation="horizontal"
     android:padding="5dp" >
 
-    <Button
-        android:id="@+id/menu_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="17dp"
-        android:layout_toRightOf="@+id/menu_chores"
-        android:drawableTop="@drawable/ic_launcher"
-        android:text="@string/hello_world"
-        android:textSize="15sp" />
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_marginLeft="19dp"
+        android:layout_toRightOf="@+id/imageView3"
+        android:src="@drawable/img7" />
 
-    <Button
-        android:id="@+id/menu_chores"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="46dp"
-        android:drawableTop="@drawable/ic_launcher"
-        android:text="@string/hello_world"
-        android:textSize="15sp" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/menu_list"
-        android:layout_marginBottom="30dp"
-        android:text="@string/plus" />
-    
+        android:layout_marginBottom="32dp"
+        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@+id/imageView3"
+        android:src="@drawable/img6" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:src="@drawable/img8" />
+
 </RelativeLayout>
