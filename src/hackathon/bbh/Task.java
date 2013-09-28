@@ -1,5 +1,5 @@
 package hackathon.bbh;
 
-public class Tarefa {
+public class Task {
 
 }
