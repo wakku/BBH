@@ -8,5 +8,6 @@
     <string name="title_activity_list">ListActivity</string>
     <string name="title_activity_chores">ChoresActivity</string>
     <string name="plus">+</string>
+    <string name="app_id">363166087070138</string>
 
 </resources>

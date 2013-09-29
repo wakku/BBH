@@ -27,6 +27,7 @@ import android.util.Log;
 public class ListActivity extends Activity {
 	
 	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		try {
