@@ -34,7 +34,7 @@ public final class R {
         public static final int newimg1=0x7f02000a;
     }
     public static final class id {
-        public static final int action_settings=0x7f080009;
+        public static final int action_settings=0x7f08000b;
         public static final int authButton=0x7f080003;
         public static final int imageView1=0x7f080001;
         public static final int imageView2=0x7f080004;
@@ -43,6 +43,8 @@ public final class R {
         public static final int item_description=0x7f080006;
         public static final int item_user=0x7f080008;
         public static final int items_list=0x7f080002;
+        public static final int relativeLayout1=0x7f080009;
+        public static final int relativeLayout2=0x7f08000a;
         public static final int textView1=0x7f080000;
     }
     public static final class layout {
