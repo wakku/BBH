@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neat Chore</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+<script type="application/javascript">
+function showOnDate(){
+	$("#dateTime").toggle();
+}
+
+function post_to_url(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+         }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+	window.location = 'tasks.html';
+}
+
+function createTask(){
+	var description = document.getElementById("description").value
+	var isOnDate = document.getElementById("onDate").checked;
+	if (isOnDate){
+		var duedate = document.getElementById("date").value;
+		var time = document.getElementById("time").value;
+	} else {
+		var today=new Date();
+		var h=today.getHours();
+		var m=today.getMinutes();
+		var s=today.getSeconds();
+		var todayDate = today.getDate();
+		var todayMonth = today.getMonth();
+		var todayYear = today.getFullYear();
+		var duedate = Date();
+	}
+	post_to_url('http://138.51.209.221:3000/tasks', {'description' : description, 'due_date' : duedate, 'status' : 'open'});
+}
+function trim(s) {
+		return s.replace(/^\s*/, "").replace(/\s*$/, "");
+}
+function validate() {
+		/*if (document.getElementById("onDate").checked) {
+			if (trim(document.getElementById("date").value) != "") {
+				document.getElementById("date").value="";
+				document.getElementById("date").placeholder="Please enter a date";
+				document.getElementById("date").focus();
+				return false;
+			} else if (trim(document.getElementById("time").value) != "") {
+				document.getElementById("time").value="";
+				document.getElementById("time").placeholder="Please enter a time";
+				document.getElementById("time").focus();
+				return false;
+			}
+		}*/
+		if (trim(document.getElementById("description").value) == "") {
+			document.getElementById("description").placeholder="Please enter a description";
+			document.getElementById("description").focus();
+			return false;
+		} else if (document.getElementById("description").value.length > 150) {
+			document.getElementById("description").value="";
+			document.getElementById("description").placeholder="Description exceeds desired length";
+			document.getElementById("description").focus();
+			return false;
+		} else {
+			createTask();
+		}
+}
+</script>
+</head>
+
+<body>
+<div data-role="header" data-position="fixed"> <a href="index.html" data-icon="arrow-l" data-rel="back">Back</a>
+	<h1>Create Task</h1>
+</div>
+<div data-role="content">
+	<form id="task" method="post" action="http://138.51.209.221:3000/tasks">
+	<ul data-role="listview" data-inset="true">
+		<li data-role="fieldcontain">
+			<fieldset data-role="controlgroup">
+				<legend>Description:</legend>
+				<input type="text" name="description" id="description" style="width:100%" placeholder="Please enter a description"/>
+			</fieldset>
+		</li>
+		<li data-role="fieldcontain">
+			<fieldset data-role="controlgroup">
+				<legend>Due:</legend>
+				<input type="radio" name="due" id="today" onClick="showOnDate();" value="today" checked="checked" />
+				<label for="today">Today</label>
+				<input type="radio" name="due" id="onDate" onClick="showOnDate();" value="onDate"  />
+				<label for="onDate">On date</label>
+			</fieldset>
+		</li>
+		<li data-role="fieldcontain" id="dateTime" style="display:none;">
+			<div data-role="fieldcontain">
+				<label for="date">Date:</label>
+				<input type="date" name="date" id="date" value="" />
+			</div>
+			<div data-role="fieldcontain">
+				<label for="time">Time:</label>
+				<input type="time" name="time" id="time" value="" />
+			</div>
+		</li>
+	</ul>
+	</form>
+</div>
+<div data-role="footer" data-position="fixed" id="footer"> <a onClick="validate();" id="saves" data-icon="check" data-theme="b" style="float: right; margin:10px;">Save</a> <a href="#confirm" data-icon="delete" iconpos="notext" data-theme="a" style="float: right; margin:10px; margin-left: 0px;" data-rel="popup" data-position-to="window" data-transition="pop">Cancel</a> </div>
+<div data-role="popup" id="confirm" data-theme="d" data-overlay-theme="b" class="ui-content-all" style="max-width:340px;">
+	<div data-role="header" data-theme="a" class="ui-corner-top">
+	<h1>Create Task</h1>
+	</div>
+	<p>Are you sure that you want to cancel?</p>
+	<a href="tasks.html" data-role="button" data-transition="slide" data-theme="b" data-inline="true" data-mini="true">Yes</a> <a href="addTask.html" data-role="button" data-rel="back" data-inline="true" data-mini="true">No</a> </div>
+</body>
+</html>
